@@ -1,6 +1,12 @@
+import os
 import requests
 import pandas as pd
 from datetime import date
+from dotenv import load_dotenv
+from sqlalchemy import create_engine
+
+load_dotenv()
+engine = create_engine(os.environ.get('DB_URI'))
 
 url_fii_resultado = "https://www.fundamentus.com.br/fii_resultado.php"
 url_resultado = "https://www.fundamentus.com.br/resultado.php"
@@ -19,6 +25,7 @@ def scrap(url):
         print('deu')
         df = pd.read_html(req.text)
         df[0].to_csv(data+'_'+nome+'.csv')
+        df[0].to_sql(nome, engine)
 
 scrap(url_fii_resultado)
 scrap(url_resultado)
