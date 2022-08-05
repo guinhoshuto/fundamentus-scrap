@@ -35,11 +35,11 @@ def scrap(url):
         print('deu')
         df = pd.read_html(req.text)
         df[0]['created_at'] = created_at
-        df[0].replace('.', '')
-        df[0].replace(',', '.')
-        df[0].replace('%', '')
-        df[0].replace('/', '_')
-        df[0][0].replace(' ', '')
+        df[0].str.replace('.', '')
+        df[0].str.replace(',', '.')
+        df[0].str.replace('%', '')
+        df[0].str.replace('/', '_')
+        df[0].columns.str.replace(' ', '')
         # df[0].to_csv(data+'_'+nome+'.csv') 
         df[0].to_sql(nome, engine)
 
