@@ -19,6 +19,11 @@ created_at = date.today().strftime('%Y-%m-%d %H:%M:%S')
 app = FastAPI()
 
 @app.get("/")
+def fundamentus():
+    scrap(url_fii_resultado)
+    scrap(url_resultado)
+    return {"message":"cadastrado com sucesso"}
+
 def scrap(url):
     print(url)
     nome = url.split('/')
@@ -32,7 +37,6 @@ def scrap(url):
         df[0]['created_at'] = created_at
         # df[0].to_csv(data+'_'+nome+'.csv') 
         df[0].to_sql(nome, engine)
-        return {"message":"cadastrado com sucesso"}
 
 
 # scrap(url_fii_resultado)
