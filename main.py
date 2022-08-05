@@ -1,7 +1,7 @@
 import os
 import requests
 import pandas as pd
-from datetime import date
+from datetime import datetime
 from sqlalchemy import create_engine
 from fastapi import FastAPI
 from dotenv import load_dotenv
@@ -14,7 +14,7 @@ url_resultado = "https://www.fundamentus.com.br/resultado.php"
 
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 data = date.today().strftime('%Y-%m-%d')
-created_at = date.today().strftime('%Y-%m-%d %H:%M:%S')
+created_at = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
 
 app = FastAPI()
 
