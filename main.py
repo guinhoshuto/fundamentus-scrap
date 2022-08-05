@@ -35,9 +35,9 @@ def scrap(url):
         print('deu')
         df = pd.read_html(req.text)[0]
         df['created_at'] = created_at
-        df = df.replace(['.'], '')
-        df = df.replace([','], '.')
-        df = df.replace(['%'], '')
+        df.columns = df.columns.str.replace(['.'], '')
+        df.columns = df.columns.str.replace([','], '.')
+        df.columns = df.columns.str.replace(['%'], '')
         print(df)
         # df[0].replace(['/'], '_')
         # df[0].columns.str.replace([' '], '')
