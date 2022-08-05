@@ -39,7 +39,7 @@ def scrap(url):
         df[0].replace([','], '.')
         df[0].replace(['%'], '')
         df[0].replace(['/'], '_')
-        df[0].columns.str.replace([' '], '')
+        # df[0].columns.str.replace([' '], '')
         # df[0].to_csv(data+'_'+nome+'.csv') 
         df[0].to_sql(nome, engine)
 
