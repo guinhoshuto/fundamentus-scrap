@@ -33,15 +33,16 @@ def scrap(url):
     req = requests.get(url, headers=headers)
     if req.status_code == 200:
         print('deu')
-        df = pd.read_html(req.text)
-        df[0]['created_at'] = created_at
-        df[0].replace(['.'], '')
-        df[0].replace([','], '.')
-        df[0].replace(['%'], '')
-        df[0].replace(['/'], '_')
+        df = pd.read_html(req.text)[0]
+        df['created_at'] = created_at
+        df = df.replace(['.'], '')
+        df = df.replace([','], '.')
+        df = df.replace(['%'], '')
+        print(df)
+        # df[0].replace(['/'], '_')
         # df[0].columns.str.replace([' '], '')
         # df[0].to_csv(data+'_'+nome+'.csv') 
-        df[0].to_sql(nome, engine)
+        df.to_sql(nome, engine)
 
 
 # scrap(url_fii_resultado)
