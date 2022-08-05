@@ -34,9 +34,9 @@ def scrap(url):
     if req.status_code == 200:
         print('deu')
         df = pd.read_html(req.text)[0]
-        df.apply(lambda x: x.astype(str).str.replace('.', ''))
-        df.apply(lambda x: x.astype(str).str.replace(',', '.'))
-        df.apply(lambda x: x.astype(str).str.replace('%', ''))
+        df = df.apply(lambda x: x.astype(str).str.replace('.', ''))
+        df = df.apply(lambda x: x.astype(str).str.replace(',', '.'))
+        df = df.apply(lambda x: x.astype(str).str.replace('%', ''))
         df['created_at'] = created_at
         # df.columns = df.columns.str.replace(['.'], '')
         # df.columns = df.columns.str.replace([','], '.')
